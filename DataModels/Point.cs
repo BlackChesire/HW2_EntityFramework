@@ -8,13 +8,28 @@ namespace HW2_EntityFramework.DataModels
 {
     public class Point
     {
-        //props id,x,y, enum cololr, tav, title 
+
         public Guid id { get; set; }
         public int x { get; set; }
         
         public int y { get; set; }
-        
-  
-         
+        public Color color { get; set; }
+        public string title { get; set; }
+        public string tav { get; set; }
+
+        public override bool Equals(object obj)
+        {
+            return base.Equals(obj);
+        }
+
+        public override int GetHashCode()
+        {
+            return base.GetHashCode();
+        }
+
+        public override string ToString()
+        {
+            return base.ToString();
+        }
     }
 }

@@ -6,15 +6,24 @@ using System.Threading.Tasks;
 
 namespace HW2_EntityFramework
 {
-    public class Colors
-    {
-        enum Color
+
+        public enum Color
         {
             white,
             black,
             red,
             green,
+            blue,
+            yellow,
+            purple,
+            grey,
             
         }
-    }
+        public enum Type
+        {
+            rectangle,
+            square,
+            circle,
+        }
+    
 }
