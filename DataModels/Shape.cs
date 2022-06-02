@@ -10,7 +10,7 @@ namespace HW2_EntityFramework.DataModels
     {
 
 
-        public int Id { get; set; }
+        public int? Id { get; set; }
         public string Title { get; set; }
 
         public Type type { get; set; }

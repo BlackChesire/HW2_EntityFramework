@@ -9,7 +9,7 @@ namespace HW2_EntityFramework.DataModels
     public class Frame
     {
 
-        public int Id { get; set; }
+        public int? Id { get; set; }
         public int x { get; set; }
         public int y { get; set; }
         public int width { get; set; }
