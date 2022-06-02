@@ -1,4 +1,5 @@
-﻿using System;
+﻿using HW2_EntityFramework.DataModels;
+using System;
 
 namespace HW2_EntityFramework
 {
@@ -6,7 +7,7 @@ namespace HW2_EntityFramework
     {
         static void Main(string[] args)
         {
-            Console.WriteLine("Hello World!");
+            
         }
     }
 }

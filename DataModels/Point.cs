@@ -9,7 +9,7 @@ namespace HW2_EntityFramework.DataModels
     public class Point
     {
 
-        public Guid id { get; set; }
+        public int id { get; set; }
         public int x { get; set; }
         
         public int y { get; set; }
