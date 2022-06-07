@@ -17,41 +17,48 @@ namespace HW2_EntityFramework
             myContext.Frames.Add(frame2);
             myContext.SaveChanges();
             //create 5 Points
-            var point1 = new Point(10, 10, Color.red, "point1", "tav1");
-            var point2 = new Point(10, 20, Color.red, "point2", "tav2");
-            var point3 = new Point(10, 30, Color.red, "point3", "tav3");
-            var point4 = new Point(10, 40, Color.red, "point4", "tav4");
-            var point5 = new Point(10, 50, Color.red, "point5", "tav5");
+            var point1 = new Point { x = 10, y = 10, color = Color.red, title = "point1", tav = "#" };
+            var point2 = new Point { x = 5, y = 5, color = Color.blue, title = "point2", tav = "%" };
+            var point3 = new Point { x = 1, y = 7, color = Color.yellow, title = "point3", tav = "&" };
+            var point4 = new Point { x = 2, y = 0, color = Color.green, title = "point4", tav = "^" };
+            var point5 = new Point { x = 2, y = 5, color = Color.white, title = "point5", tav = "!" };
+            
             var pointsList = new List<Point>() { point1, point2, point3, point4, point5 };
             //add points list to frame 1 and frame 2
-            frame1.shapes.Add(new Shape("frame1", Type.singlePoint, pointsList));
-            frame2.shapes.Add(new Shape("frame2", Type.singlePoint, pointsList));
+            frame1.shapes.Add(new Shape { Title="shape1-sp", type=Type.singlePoint,point = pointsList });
+            frame1.shapes.Add(new Shape { Title="shape2-sp", type=Type.singlePoint,point = pointsList });
             myContext.SaveChanges();
             //create 4 horizontal lines
-            var line1 = new Shape("line1", Type.HorizontalLine, new List<Point>() { point1, point2 });
-            var line2 = new Shape("line2", Type.HorizontalLine, new List<Point>() { point2, point3 });
-            var line3 = new Shape("line3", Type.HorizontalLine, new List<Point>() { point3, point4 });
-            var line4 = new Shape("line4", Type.HorizontalLine, new List<Point>() { point4, point5 });
+            var line1 = new Shape { Title = "line1", type = Type.HorizontalLine, point = new List<Point>() { new Point { x = 10, y = 10, color = Color.red, title = "point1", tav = "#" }, new Point { x = 10, y = 10, color = Color.red, title = "point2", tav = "#" } } };
+            var line2 = new Shape { Title = "line1", type = Type.HorizontalLine, point = new List<Point>() { new Point { x = 5, y = 5, color = Color.red, title = "point3", tav = "#" }, new Point { x = 5, y = 5, color = Color.red, title = "point4", tav = "@" } } };
+            var line3 = new Shape { Title = "line1", type = Type.HorizontalLine, point = new List<Point>() { new Point { x = 3, y = 3, color = Color.red, title = "point5", tav = "#" }, new Point { x = 3, y = 3, color = Color.red, title = "point6", tav = "!" } } };
+            var line4 = new Shape { Title = "line1", type = Type.HorizontalLine, point = new List<Point>() { new Point { x = 4, y = 4, color = Color.red, title = "point7", tav = "#" }, new Point { x = 4, y = 4, color = Color.yellow, title = "point8", tav = "&" } } };
+      
             //add lines to frame 1 and frame 2
             frame1.shapes.Add(line1);
             frame2.shapes.Add(line2);
+            frame2.shapes.Add(line3);
+            frame2.shapes.Add(line4);
             myContext.SaveChanges();
             //create 4 verticalLines 
-            var verticalLine1 = new Shape("verticalLine1", Type.VerticalLine, new List<Point>() { point1, point2 });
-            var verticalLine2 = new Shape("verticalLine2", Type.VerticalLine, new List<Point>() { point2, point3 });
-            var verticalLine3 = new Shape("verticalLine3", Type.VerticalLine, new List<Point>() { point3, point4 });
-            var verticalLine4 = new Shape("verticalLine4", Type.VerticalLine, new List<Point>() { point4, point5 });
+            var verticalLine1 = new Shape { Title = "line1", type = Type.HorizontalLine, point = new List<Point>() { new Point { x = 0, y = 10, color = Color.red, title = "point1", tav = "#" }, new Point { x = 0, y = 11, color = Color.red, title = "point2", tav = "#" } } };
+            var verticalLine2 = new Shape { Title = "line1", type = Type.HorizontalLine, point = new List<Point>() { new Point { x = 0, y = 5, color = Color.red, title = "point3", tav = "#" }, new Point { x = 0, y = 6, color = Color.red, title = "point4", tav = "@" } } };
+            var verticalLine3 = new Shape { Title = "line1", type = Type.HorizontalLine, point = new List<Point>() { new Point { x = 0, y = 3, color = Color.red, title = "point5", tav = "#" }, new Point { x = 0, y = 4, color = Color.red, title = "point6", tav = "!" } } };
+            var verticalLine4 = new Shape { Title = "line1", type = Type.HorizontalLine, point = new List<Point>() { new Point { x = 0, y = 4, color = Color.red, title = "point7", tav = "#" }, new Point { x = 0, y = 5, color = Color.yellow, title = "point8", tav = "&" } } };
+
             //add lines to frame 1 and frame 2
             frame1.shapes.Add(verticalLine1);
             frame2.shapes.Add(verticalLine2);
+            frame2.shapes.Add(verticalLine3);
+            frame2.shapes.Add(verticalLine4);
             myContext.SaveChanges();
             //update verticalLine in frame 1
-            var verticalLine = frame1.shapes.Find(s => s.Id == 1 && s.Id == 2);
-            verticalLine.point[0].x = 20;
-            verticalLine.point[1].y = 30;
-            var verticalLine_2 = frame2.shapes.Find(s => s.Id == 1 && s.Id == 2);
-            verticalLine_2.point[0].x = 20;
-            verticalLine_2.point[1].y = 30;
+            var verticalLine = frame1.shapes;
+            verticalLine[0].point[1].x = 30;
+            verticalLine[0].point[1].y = 30;
+            var verticalLine_2 = frame2.shapes;
+            verticalLine[0].point[1].x = 2;
+            verticalLine[0].point[1].y = 2;
             myContext.SaveChanges();
 
 
