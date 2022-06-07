@@ -16,9 +16,11 @@ namespace HW2_EntityFramework.DataModels
         public DbSet<Point> Points { get; set; }
 
         protected override void OnConfiguring(DbContextOptionsBuilder options)
-       => options.UseSqlServer(@"Data Source=(localdb)\MSSQLLocalDB;Initial Catalog=master;Integrated Security=True;Connect Timeout=30;Encrypt=False;TrustServerCertificate=False;ApplicationIntent=ReadWrite;MultiSubnetFailover=False");
+        {
+            options.UseSqlServer(@"Data Source=(localdb)\MSSQLLocalDB;Initial Catalog=master;Integrated Security=True;Connect Timeout=30;Encrypt=False;TrustServerCertificate=False;ApplicationIntent=ReadWrite;MultiSubnetFailover=False");
 
 
+        }
 
 
 

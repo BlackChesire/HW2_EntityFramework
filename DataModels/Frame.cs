@@ -8,6 +8,7 @@ namespace HW2_EntityFramework.DataModels
 {
     public class Frame
     {
+ 
 
         public int? Id { get; set; }
         public int x { get; set; }
@@ -15,7 +16,7 @@ namespace HW2_EntityFramework.DataModels
         public int width { get; set; }
         public int height { get; set; }
 
-        public List<Shape> shapes { get; } = new();
+        public List<Shape> shapes { get; set; } = new();
 
         public void AddFrame(Frame frame)
         {

@@ -8,27 +8,24 @@ namespace HW2_EntityFramework.DataModels
 {
     public class Shape
     {
-        public Shape(string title, Type type, List<Point> point)
-        {
-            Title = title;
-            this.type = type;
-            this.point = point;
-        }
+      
 
         public int? Id { get; set; }
         public string Title { get; set; }
 
         public Type type { get; set; }
 
-        public List<Point> point { get; } = new();
+        public List<Point> point { get; set; } = new();
 
-        //TODO:  6 & 7 & 16
 
+
+
+        
         public static void addSinglePointShape(int x, int y, Color color, string title, string tav, int FrameID)
         {
-            var point = new Point(x, y, color, title, tav);
+            var point = new Point { color = color, x = x, y = y, title = title, tav = tav };
             List<Point> singlePointList = new List<Point>() { point };
-            var Shape = new Shape(title, Type.singlePoint, singlePointList);
+            var Shape = new Shape { Title = title, type = Type.singlePoint, point = singlePointList };
             using Context myContext = new Context();
             var frame = myContext.Frames.FirstOrDefault(f => f.Id == FrameID);
             frame.shapes.Add(Shape);
@@ -37,7 +34,7 @@ namespace HW2_EntityFramework.DataModels
 
         public static void AddHorizontalline(List<Point> point, string Title,int FrameID)
         {
-            var Shape = new Shape(Title, Type.HorizontalLine, point);
+            var Shape = new Shape { Title = Title, type = Type.HorizontalLine, point = point };
             using Context myContext = new Context();
             var frame = myContext.Frames.FirstOrDefault(f => f.Id == FrameID);
             frame.shapes.Add(Shape);
@@ -46,7 +43,7 @@ namespace HW2_EntityFramework.DataModels
         
         public static void AddVerticalLine(List<Point> point, string Title, int FrameID)
         {
-            var Shape = new Shape(Title, Type.VerticalLine, point);
+            var Shape = new Shape { Title = Title, type = Type.VerticalLine, point = point };
             using Context myContext = new Context();
             var frame = myContext.Frames.FirstOrDefault(f => f.Id == FrameID);
             frame.shapes.Add(Shape);

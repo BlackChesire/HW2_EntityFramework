@@ -21,7 +21,7 @@ namespace HW2_EntityFramework.Migrations
 
             modelBuilder.Entity("HW2_EntityFramework.DataModels.Frame", b =>
                 {
-                    b.Property<int>("Id")
+                    b.Property<int?>("Id")
                         .ValueGeneratedOnAdd()
                         .HasColumnType("int")
                         .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
@@ -45,7 +45,7 @@ namespace HW2_EntityFramework.Migrations
 
             modelBuilder.Entity("HW2_EntityFramework.DataModels.Point", b =>
                 {
-                    b.Property<int>("id")
+                    b.Property<int?>("id")
                         .ValueGeneratedOnAdd()
                         .HasColumnType("int")
                         .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
@@ -77,7 +77,7 @@ namespace HW2_EntityFramework.Migrations
 
             modelBuilder.Entity("HW2_EntityFramework.DataModels.Shape", b =>
                 {
-                    b.Property<int>("Id")
+                    b.Property<int?>("Id")
                         .ValueGeneratedOnAdd()
                         .HasColumnType("int")
                         .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);

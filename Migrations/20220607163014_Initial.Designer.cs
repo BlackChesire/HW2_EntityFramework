@@ -10,8 +10,8 @@ using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 namespace HW2_EntityFramework.Migrations
 {
     [DbContext(typeof(Context))]
-    [Migration("20220602123525_2")]
-    partial class _2
+    [Migration("20220607163014_Initial")]
+    partial class Initial
     {
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
@@ -23,7 +23,7 @@ namespace HW2_EntityFramework.Migrations
 
             modelBuilder.Entity("HW2_EntityFramework.DataModels.Frame", b =>
                 {
-                    b.Property<int>("Id")
+                    b.Property<int?>("Id")
                         .ValueGeneratedOnAdd()
                         .HasColumnType("int")
                         .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
@@ -47,7 +47,7 @@ namespace HW2_EntityFramework.Migrations
 
             modelBuilder.Entity("HW2_EntityFramework.DataModels.Point", b =>
                 {
-                    b.Property<int>("id")
+                    b.Property<int?>("id")
                         .ValueGeneratedOnAdd()
                         .HasColumnType("int")
                         .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
@@ -79,7 +79,7 @@ namespace HW2_EntityFramework.Migrations
 
             modelBuilder.Entity("HW2_EntityFramework.DataModels.Shape", b =>
                 {
-                    b.Property<int>("Id")
+                    b.Property<int?>("Id")
                         .ValueGeneratedOnAdd()
                         .HasColumnType("int")
                         .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
