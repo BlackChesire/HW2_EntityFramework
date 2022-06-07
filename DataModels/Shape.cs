@@ -8,7 +8,12 @@ namespace HW2_EntityFramework.DataModels
 {
     public class Shape
     {
-
+        public Shape(string title, Type type, List<Point> point)
+        {
+            Title = title;
+            this.type = type;
+            this.point = point;
+        }
 
         public int? Id { get; set; }
         public string Title { get; set; }
@@ -17,20 +22,46 @@ namespace HW2_EntityFramework.DataModels
 
         public List<Point> point { get; } = new();
 
-        //TODO: Shape 5 & 6 & 7 & 16
+        //TODO:  6 & 7 & 16
 
-      
+        public static void addSinglePointShape(int x, int y, Color color, string title, string tav, int FrameID)
+        {
+            var point = new Point(x, y, color, title, tav);
+            List<Point> singlePointList = new List<Point>() { point };
+            var Shape = new Shape(title, Type.singlePoint, singlePointList);
+            using Context myContext = new Context();
+            var frame = myContext.Frames.FirstOrDefault(f => f.Id == FrameID);
+            frame.shapes.Add(Shape);
+            myContext.SaveChanges();
+        }
+
+        public static void AddHorizontalline(List<Point> point, string Title,int FrameID)
+        {
+            var Shape = new Shape(Title, Type.HorizontalLine, point);
+            using Context myContext = new Context();
+            var frame = myContext.Frames.FirstOrDefault(f => f.Id == FrameID);
+            frame.shapes.Add(Shape);
+            myContext.SaveChanges();
+        }
+        
+        public static void AddVerticalLine(List<Point> point, string Title, int FrameID)
+        {
+            var Shape = new Shape(Title, Type.VerticalLine, point);
+            using Context myContext = new Context();
+            var frame = myContext.Frames.FirstOrDefault(f => f.Id == FrameID);
+            frame.shapes.Add(Shape);
+            myContext.SaveChanges();
+        }
 
 
-
-        public Shape getShapeById(int id)
+        public static Shape getShapeById(int id)
         {
             using Context myContext = new Context();
             var shape = myContext.Shapes.FirstOrDefault(s => s.Id == id);
             return shape;
         }
 
-        public void AddPointsToShape(int ShapeID, List<Point> points)
+        public static void AddPointsToShape(int ShapeID, List<Point> points)
         {
             using Context myContext = new Context();
             var shape = myContext.Shapes.FirstOrDefault(s => s.Id == ShapeID);
@@ -41,7 +72,7 @@ namespace HW2_EntityFramework.DataModels
             myContext.SaveChanges();
         }
 
-        public List<Point> getAllPointSortedByX(Shape shape_)
+        public static List<Point> getAllPointSortedByX(Shape shape_)
         {
             using Context myContext = new Context();
             var shape = myContext.Shapes.FirstOrDefault(s => s.Id == shape_.Id);
@@ -49,34 +80,34 @@ namespace HW2_EntityFramework.DataModels
             return points;
         }
 
-        public List<Point> getAllPointSortedByY(Shape shape_)
+        public static List<Point> getAllPointSortedByY(Shape shape_)
         {
             using Context myContext = new Context();
             var shape = myContext.Shapes.FirstOrDefault(s => s.Id == shape_.Id);
             var points = shape.point.OrderBy(p => p.y).ToList();
             return points;
         }
-        public void CloneShapeToAnotherFrame(Shape s,Frame from,Frame to)
+        public static void CloneShapeToAnotherFrame(Shape s,Frame from,Frame to)
         {
             using Context myContext = new Context();
             var shape = myContext.Frames.Where(f => f.Id == from.Id).FirstOrDefault().shapes.Where(p => p.Id == s.Id).FirstOrDefault();
             myContext.Frames.Where(f => f.Id == to.Id).FirstOrDefault().shapes.Add(shape);
             myContext.SaveChanges();
         }
-        public void DeleteShapeAndItsPoints(Shape s)
+        public static void DeleteShapeAndItsPoints(Shape s)
         {
             using Context myContext = new Context();
             myContext.Shapes.Where(f => f.Id == s.Id).FirstOrDefault().point.Clear();
             myContext.Remove(s);
             myContext.SaveChanges();
         }
-        public List<Point> getAllPointsCuttingX()
+        public static List<Point> getAllPointsCuttingX()
         {
             using Context myContext = new Context();
             var points = myContext.Points.Where(p => p.y == 0).ToList();
             return points;
         }
-        public List<Point> getAllPointsCuttingY()
+        public static List<Point> getAllPointsCuttingY()
         {
             using Context myContext = new Context();
             var points = myContext.Points.Where(p => p.x == 0).ToList();
@@ -84,13 +115,13 @@ namespace HW2_EntityFramework.DataModels
         }
 
         //TODO
-        public List<Point> getAllCommonPoints(Frame f)
+        public static List<Point> getAllCommonPoints(Frame f)
         {
             return null;
 
         }
         
-        public void ChangeColor(Shape s,Color color)
+        public static void ChangeColor(Shape s,Color color)
         {
             using Context myContext = new Context();
             var shape = myContext.Shapes.Where(f => f.Id == s.Id).FirstOrDefault();

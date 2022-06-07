@@ -8,6 +8,14 @@ namespace HW2_EntityFramework.DataModels
 {
     public class Point
     {
+        public Point(int x, int y, Color color, string title, string tav)
+        {
+            this.x = x;
+            this.y = y;
+            this.color = color;
+            this.title = title;
+            this.tav = tav;
+        }
 
         public int? id { get; set; }
         public int x { get; set; }

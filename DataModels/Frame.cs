@@ -23,7 +23,7 @@ namespace HW2_EntityFramework.DataModels
             myContext.Frames.Add(frame);
             myContext.SaveChanges();
         }
-        public void UpdateFrame(Frame frameToUpdate, int new_x, int new_y)
+        public static void UpdateFrame(Frame frameToUpdate, int new_x, int new_y)
         {
             using Context myContext = new Context();
             var oldFrame = myContext.Frames.FirstOrDefault(f => f.Id == frameToUpdate.Id);
@@ -33,14 +33,14 @@ namespace HW2_EntityFramework.DataModels
 
 
         }
-        public Frame GetFrameById(int id)
+        public static Frame GetFrameById(int id)
         {
             using Context myContext = new Context();
             var frame = myContext.Frames.FirstOrDefault(f => f.Id == id);
             return frame;
 
         }
-        public void AllIdAndTitleByFrame(Frame frame_)
+        public static void AllIdAndTitleByFrame(Frame frame_)
         {
             using Context myContext = new Context();
             var frame = myContext.Frames.FirstOrDefault(f => f.Id == frame_.Id);

@@ -24,6 +24,10 @@ namespace HW2_EntityFramework
             rectangle,
             square,
             circle,
-        }
-    
+            singlePoint,
+            HorizontalLine,
+            VerticalLine
+
+    }
+
 }
