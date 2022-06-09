@@ -111,13 +111,19 @@ namespace HW2_EntityFramework.DataModels
             return points;
         }
 
-        //TODO
-        public static List<Point> getAllCommonPoints(Frame f)
+        //find all shapes in a frame with a commom points using groupby
+        public static List<Shape> getAllShapesWithCommonPoints(Frame f)
         {
-            return null;
-
+            using Context myContext = new Context();
+            var shapes_ = myContext.Frames.Where(p => p.Id == f.Id).FirstOrDefault().shapes.GroupBy(p => p.point).ToList();
+            //for each shape in shapes
+            List<Shape> shapes = new List<Shape>();
+            foreach (Shape s in shapes_) {
+                shapes.Add(s);
+            }
+            return shapes;
         }
-        
+
         public static void ChangeColor(Shape s,Color color)
         {
             using Context myContext = new Context();
