@@ -98,17 +98,43 @@ namespace HW2_EntityFramework.DataModels
             myContext.Remove(s);
             myContext.SaveChanges();
         }
-        public static List<Point> getAllPointsCuttingX()
+        public static List<Shape> getAllShapesCuttingX(Frame f)
         {
             using Context myContext = new Context();
-            var points = myContext.Points.Where(p => p.y == 0).ToList();
-            return points;
+            var shapes = myContext.Frames.Where(f => f.Id == f.Id).FirstOrDefault().shapes.ToList();
+            var shapesCuttingX = new List<Shape>();
+            foreach (Shape s in shapes)
+            {
+                //for each point in shape
+                foreach (Point p in s.point)
+                {
+                    //if point is cutting x
+                    if (p.y == 0)
+                    {
+                        shapesCuttingX.Add(s);
+                    }
+                }
+            }
+            return shapesCuttingX;
         }
-        public static List<Point> getAllPointsCuttingY()
+        public static List<Shape> getAllShapesCuttingY(Frame f)
         {
             using Context myContext = new Context();
-            var points = myContext.Points.Where(p => p.x == 0).ToList();
-            return points;
+            var shapes = myContext.Frames.Where(f => f.Id == f.Id).FirstOrDefault().shapes.ToList();
+            var shapesCuttingY = new List<Shape>();
+            foreach (Shape s in shapes)
+            {
+                //for each point in shape
+                foreach (Point p in s.point)
+                {
+                    //if point is cutting y
+                    if (p.x == 0)
+                    {
+                        shapesCuttingY.Add(s);
+                    }
+                }
+            }
+            return shapesCuttingY;
         }
 
         //find all shapes in a frame with a commom points using groupby
